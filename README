@@ -1,0 +1,11 @@
+iGLKit Project implements the IOS 5.0 GLKit framework for IOS 4.2+ and xcode 4.2+.  Implementation uses the header files of GLKit framework.
+
+Current status:
+- xcode 4.2 opengl template now working without framework
+- further lighting test requires
+- further tests on textures, fog, shader program
+- per-pixel lighting is missing
+- two sided light model is missing
+- skybox and reflection map effects are missing
+- status of matrix stack, unknown
+- optimizations requires
