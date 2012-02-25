@@ -91,6 +91,9 @@
 - (void)setPaused:(BOOL)paused {
     if (paused) {
         if (!_paused) {
+            if (_delegate) {
+                [_delegate glkViewController:self willPause:YES];
+            }
             [self.displayLink invalidate];
             self.displayLink = nil;
             
@@ -103,6 +106,9 @@
         return;
     }
     if (_paused) {
+        if (_delegate) {
+            [_delegate glkViewController:self willPause:NO];
+        }
         CADisplayLink *aDisplayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(executeRunLoop)];
         [aDisplayLink setFrameInterval:_animationFrameInterval];
         [aDisplayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];

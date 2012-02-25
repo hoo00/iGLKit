@@ -201,6 +201,28 @@ enum {
     return _material;
 }
 
+- (GLKEffectPropertyTexture *)texture2d0 {
+    if (!_texture2d0) {
+        GLKEffectPropertyTexture *aTexture = [[GLKEffectPropertyTexture alloc] init];
+        _texture2d0 = aTexture;
+        [_effects addObject:aTexture];
+        [aTexture release];
+        _needShaderUpdate = true;
+    }
+    return _texture2d0;
+}
+
+- (GLKEffectPropertyTexture *)texture2d1 {
+    if (!_texture2d1) {
+        GLKEffectPropertyTexture *aTexture = [[GLKEffectPropertyTexture alloc] init];
+        _texture2d1 = aTexture;
+        [_effects addObject:aTexture];
+        [aTexture release];
+        _needShaderUpdate = true;
+    }
+    return _texture2d1;
+}
+
 - (GLKEffectPropertyFog *)fog {
     if (!_fog) {
         GLKEffectPropertyFog *aFog = [[GLKEffectPropertyFog alloc] init];
@@ -347,7 +369,7 @@ enum {
     uniforms[UNIFORM_LIGHT2_ATTENUATION_CUTOFF] = glGetUniformLocation(_program, "u_light2_attenuation_cutoff");
 
     uniforms[UNIFORM_SAMPLER0] = glGetUniformLocation(_program, "u_sampler0");
-    uniforms[UNIFORM_SAMPLER0] = glGetUniformLocation(_program, "u_sampler1");
+    uniforms[UNIFORM_SAMPLER1] = glGetUniformLocation(_program, "u_sampler1");
     
     uniforms[UNIFORM_FOG_COLOR] = glGetUniformLocation(_program, "u_fog_color");
     uniforms[UNIFORM_DENSITY_START_END] = glGetUniformLocation(_program, "u_density_start_end");
@@ -580,7 +602,7 @@ enum {
             else {
                 glBindTexture(GL_TEXTURE_CUBE_MAP, [_texture2d1 name]);
             }
-            glUniform1i(uniforms[UNIFORM_SAMPLER1], 0);
+            glUniform1i(uniforms[UNIFORM_SAMPLER1], 1);
         }
         if (_fog && _fog.enabled) {
             glUniform4fv(uniforms[UNIFORM_FOG_COLOR], 1, [_fog getFogColor]->v);

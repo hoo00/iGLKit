@@ -144,19 +144,20 @@ void main() {
 #endif //GL_VERTEX_SHADER
 
 #ifdef GL_FRAGMENT_SHADER
-uniform sampler2D u_sampler0;
-uniform sampler2D u_sampler1;
-
 uniform mediump vec4 u_fog_color;
 
 #ifdef TEXTURE0_CUBE
+uniform samplerCube u_sampler0;
 varying mediump vec3 v_texcoord0;
 #else
+uniform sampler2D u_sampler0;
 varying mediump vec2 v_texcoord0;
 #endif
 #ifdef TEXTURE1_CUBE
+uniform samplerCube u_sampler1;
 varying mediump vec3 v_texcoord1;
 #else
+uniform sampler2D u_sampler1;
 varying mediump vec2 v_texcoord1;
 #endif
 varying mediump float v_fog;
